@@ -17,7 +17,7 @@ public class Customer {
   }
 
   public Customer(String customerId, int clientId, String firstName, String lastName, Date dateOfBirth, String ssn,
-      String socialInsurancenum, String tin, String phoneNumber, Address address, Set<Account> accounts) {
+      String socialInsurancenum, String tin, String phoneNumber, Address address, Set<Account> accounts, set<int>accountNumber, int salary) {
     super();
     this.clientId = clientId;
     this.customerId = customerId;
@@ -30,6 +30,8 @@ public class Customer {
     this.phoneNumber = phoneNumber;
     this.address = address;
     this.accounts = accounts;
+    this accountNumber= accountNumber;
+    this.salary = salary
   }
 
   @Id
@@ -59,6 +61,10 @@ public class Customer {
 
   @OneToMany(cascade = { CascadeType.ALL })
   private Set<Account> accounts;
+
+  private Set<Integer> accountNumber;
+
+  private int salary;
 
   public long getId() {
     return id;
@@ -155,13 +161,20 @@ public class Customer {
   public void setAccounts(Set<Account> accounts) {
     this.accounts = accounts;
   }
+  public void setAccountNumber(Set<int> accountNumber) {
+    this.accountNumber = accountNumber;
+  }
+  public void setSalary(Integer salary) {
+    this.salary = salary;
+  }
+  
 
   @Override
   public String toString() {
     return "Customer [id=" + id + ", customerId=" + customerId + ", clientId=" + clientId + ", firstName=" + firstName
         + ", lastName=" + lastName + ", dateOfBirth=" + dateOfBirth + ", ssn=" + ssn + ", socialInsurancenum="
         + socialInsurancenum + ", tin=" + tin + ", phoneNumber=" + phoneNumber + ", address=" + address + ", accounts="
-        + accounts + "]";
+        + accounts + "]" + accountNumber + ", salary="+salary;
   }
 
 }
