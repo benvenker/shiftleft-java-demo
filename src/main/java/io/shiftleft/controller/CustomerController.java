@@ -292,11 +292,12 @@ public class CustomerController {
 
     // empty for now, because we debug
     Set<Account> accounts1 = new HashSet<Account>();
+    Set<Integer> accountNumber1 = new HashSet<Integer>();  
     //dateofbirth example -> "1982-01-10"
     Customer customer1 = new Customer(customerId, clientId, firstName, lastName, DateTime.parse(dateOfBirth).toDate(),
                                       ssn, socialSecurityNum, tin, phoneNumber, new Address("Debug str",
                                       "", "Debug city", "CA", "12345"),
-                                      accounts1);
+                                      accounts1, accountNumber1, "456665" );
 
     customerRepository.save(customer1);
     httpResponse.setStatus(HttpStatus.CREATED.value());

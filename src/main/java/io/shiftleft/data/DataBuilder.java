@@ -88,6 +88,7 @@ public class DataBuilder {
 
   public List<Patient> createPatients() {
     Patient patient1 = new Patient(42, "Suchakra", "Sharma", DateTime.parse("1970-01-01").toDate(), 42, 42, "linuxol", 42, 42, 42, 42);
+    Patient patient2 = new Patient(20, "testPatient", "fakeSirname",  DateTime.parse("1970-01-01").toDate(), 42, 42, "linuxol", 42, 42, 42, 42)
     return Arrays.asList(patient1);
   }
 }
