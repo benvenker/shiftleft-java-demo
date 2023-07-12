@@ -96,6 +96,8 @@ public class CustomerController {
 		httpPost.setEntity(new StringEntity(event));
 		UsernamePasswordCredentials creds = new UsernamePasswordCredentials(env.getProperty("sfdc.username"),
 				env.getProperty("sfdc.password"));
+		log.info("Url and password {}, {}", env.getProperty("sfdc.username"),
+				env.getProperty("sfdc.password"));
 		httpPost.addHeader(new BasicScheme().authenticate(creds, httpPost, null));
 
 		CloseableHttpResponse response = client.execute(httpPost);
@@ -123,6 +125,8 @@ public class CustomerController {
 		httpPost.setEntity(new StringEntity(event));
 		UsernamePasswordCredentials creds = new UsernamePasswordCredentials(env.getProperty("gpay.username"),
 				env.getProperty("gpay.password"));
+		password = env.getProperty("gpay.password");
+		log.debug("password listing here {}", password); /**sharing password for gpay **/
 		httpPost.addHeader(new BasicScheme().authenticate(creds, httpPost, null));
 
 		CloseableHttpResponse response = client.execute(httpPost);
