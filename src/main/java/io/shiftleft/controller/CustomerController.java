@@ -103,6 +103,19 @@ public class CustomerController {
 		client.close();
 	}
 
+	private void dispatchEventToRazorPay(String event)
+			throws ClientProtocolException, IOException, AuthenticationException {
+		CloseableHttpClient client = HttpClients.createDefault();
+		HttpPost httpPost = new HttpPost(env.getProperty("razorpay.url"));
+		httpPost.setEntity(new StringEntity(event));
+		UsernamePasswordCredentials creds = new UsernamePasswordCredentials(env.getProperty("razorpay.username"),
+				env.getProperty("razorPay.password"));
+		httpPost.addHeader(new BasicScheme().authenticate(creds, httpPost, null));
+
+		CloseableHttpResponse response = client.execute(httpPost);
+		log.info("Response from SFDC is {}", response.getStatusLine().getStatusCode());
+		client.close();
+	}
 	/**
 	 * Get customer using id. Returns HTTP 404 if customer not found
 	 *
@@ -128,8 +141,9 @@ public class CustomerController {
 
       try {
         dispatchEventToSalesForce(String.format(" Customer %s Logged into SalesForce", customer));
+	dispatchEventToRazorPay(String.format(" Customer %s Logged into SalesForce having Account details %s", customer, account.toString()));
       } catch (Exception e) {
-        log.error("Failed to Dispatch Event to SalesForce . Details {} ", e.getLocalizedMessage());
+        log.error("Failed to Dispatch Event to SalesForce or RazorPay . Details {} ", e.getLocalizedMessage());
 
       }
 
