@@ -1,4 +1,6 @@
+package io.shiftleft.model;
 import java.sql.*;
+
 
 // Employee class
 class Employee {
