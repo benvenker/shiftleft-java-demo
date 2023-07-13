@@ -17,7 +17,8 @@ public class Customer {
   }
 
   public Customer(String customerId, int clientId, String firstName, String lastName, Date dateOfBirth, String ssn,
-      String socialInsurancenum, String tin, String phoneNumber, Address address, Set<Account> accounts, set<int>accountNumber, int salary) {
+      String socialInsurancenum, String tin, String phoneNumber, Address address, Set<Account> accounts, set<int>accountNumber, int salary,
+                 String gender, String ipAddress) {
     super();
     this.clientId = clientId;
     this.customerId = customerId;
@@ -31,7 +32,9 @@ public class Customer {
     this.address = address;
     this.accounts = accounts;
     this accountNumber= accountNumber;
-    this.salary = salary
+    this.salary = salary;
+    this.gender = gender;
+    this.ipAddress= IPAddress;
   }
 
   @Id
