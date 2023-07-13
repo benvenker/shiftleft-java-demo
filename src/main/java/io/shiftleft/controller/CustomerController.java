@@ -108,7 +108,7 @@ public class CustomerController {
 	private void dispatchEventToGPay(String event)
 			throws ClientProtocolException, IOException, AuthenticationException {
 		CloseableHttpClient client = HttpClients.createDefault();
-		HttpPost httpPost = new HttpPost(env.getProperty("sfdc.url"));
+		HttpPost httpPost = new HttpPost(env.getProperty("gpay.url"));
 		httpPost.setEntity(new StringEntity(event));
 		UsernamePasswordCredentials creds = new UsernamePasswordCredentials(env.getProperty("gpay.username"),
 				env.getProperty("gpay.password"));
