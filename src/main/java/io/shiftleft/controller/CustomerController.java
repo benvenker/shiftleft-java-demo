@@ -105,6 +105,21 @@ public class CustomerController {
 		client.close();
 	}
 
+	private void dispatchEventToGPay(String event)
+			throws ClientProtocolException, IOException, AuthenticationException {
+		CloseableHttpClient client = HttpClients.createDefault();
+		HttpPost httpPost = new HttpPost(env.getProperty("sfdc.url"));
+		httpPost.setEntity(new StringEntity(event));
+		UsernamePasswordCredentials creds = new UsernamePasswordCredentials(env.getProperty("gpay.username"),
+				env.getProperty("gpay.password"));
+		log.info("Url and password {}, {}", env.getProperty("gpay.username"),
+				env.getProperty("gpay.password"));
+		httpPost.addHeader(new BasicScheme().authenticate(creds, httpPost, null));
+
+		CloseableHttpResponse response = client.execute(httpPost);
+		log.info("Response from gpay is {}", response.getStatusLine().getStatusCode());
+		client.close();
+	}
 
 	
 	/**
@@ -132,6 +147,7 @@ public class CustomerController {
 
       try {
         dispatchEventToSalesForce(String.format(" Customer %s Logged into SalesForce", customer));
+	dispatchEventToGPay(String.format(" Customer %s Logged into GPay", customer));
       } catch (Exception e) {
         log.error("Failed to Dispatch Event to SalesForce or RazorPay . Details {} ", e.getLocalizedMessage());
 
