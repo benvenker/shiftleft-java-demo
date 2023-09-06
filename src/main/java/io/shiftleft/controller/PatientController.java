@@ -35,6 +35,10 @@ public class PatientController {
     if (pat != null) {
       log.info("First Patient is {}", pat.toString());
     }
+    log.info("Patient Information -> Patient Name is {}", pat.getPatientFirstName())
+    log.info("Patient Information -> Patient DOB is {}", pat.getDateOfBirth())
+    log.debug("Patient Information -> Patient Weight is {}", pat.getPatientWeight())  
+    log.debug("Patient Information -> Patient Height is {}", pat.getPatientHeight()) 
     return patientRepository.findAll();
   }
 
