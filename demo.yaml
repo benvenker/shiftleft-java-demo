@@ -1,0 +1,22 @@
+data_from_databases:
+  vault_url: https://www.selfhosted.azure.net/
+  sql_server:
+    name: demoread
+    host: demo-mssql-database.ap-south-1.amazonaws.com
+    database: testdatabase
+    username: config_crusaders
+    driver: ODBC Driver 17 for SQL Server
+    #ODBC Driver 17 for SQL Server
+    # /usr/local/lib/libmsodbcsql.17.dylib
+  postgresql:
+    name: postgres
+    host: test-db.postgres.database.azure.com
+    port: 5432
+    database: testdatabase
+    username: config_crusaders
+  redshift:
+    name: RedshiftDW
+    host: adw.random.ap-south-1.redshift.amazonaws.com
+    port: 5439
+    database: configdb
+    username: config_crusaders
