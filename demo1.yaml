@@ -1,0 +1,16 @@
+deploy:
+  helm:
+    releases:
+    - name: postgresql
+      version: 10.2.6
+      remote: true
+      postgres:
+        postgresqlDatabase: pricing_service
+      wait: true
+    - name: service
+      chartPath: charts/pricing-service
+      setValueTemplates:
+        dockerImageOverride: "{{.DIGEST}}"
+        image.pullPolicy: IfNotPresent
+      valuesFiles:
+        - charts/pricing-service/values/local.yaml
